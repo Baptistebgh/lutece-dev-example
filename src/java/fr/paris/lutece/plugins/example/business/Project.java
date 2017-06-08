@@ -58,6 +58,12 @@ public class Project implements Serializable
     @NotEmpty( message = "#i18n{example.validation.project.ImageUrl.notEmpty}" )
     @Size( max = 255 , message = "#i18n{example.validation.project.ImageUrl.size}" ) 
     private String _strImageUrl;
+    @NotEmpty(message = "#i18n{example.validation.project.cost.notEmpty}")
+    @Min(value = 5, message = "#i18n{example.validation.project.cost.range}")
+    @Max(value = 25, message = "#i18n{example.validation.project.cost.range}")
+    @Pattern(regexp = "(5|10|15|20|25)", message = "#i18n{example.validation.project.cost.range}")
+    private String _strCost;
+
 
     /**
      * Returns the Id
@@ -129,5 +135,21 @@ public class Project implements Serializable
     public void setImageUrl( String strImageUrl )
     {
         _strImageUrl = strImageUrl;
+    }
+    
+    /**
+     * Sets the cost
+     * @param strCost The cost
+     */ 
+    public void setCost(String strCost) {
+        this._strCost = strCost;
+    }
+
+    /**
+     * Returns the cost
+     * @return The cost
+     */
+    public String getCost() {
+        return _strCost;
     }
 }
