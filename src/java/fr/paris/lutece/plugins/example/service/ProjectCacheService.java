@@ -1,8 +1,37 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (c) 2002-2018, Mairie de Paris
+ * All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions
+ * are met:
+ *
+ *  1. Redistributions of source code must retain the above copyright notice
+ *     and the following disclaimer.
+ *
+ *  2. Redistributions in binary form must reproduce the above copyright notice
+ *     and the following disclaimer in the documentation and/or other materials
+ *     provided with the distribution.
+ *
+ *  3. Neither the name of 'Mairie de Paris' nor 'Lutece' nor the names of its
+ *     contributors may be used to endorse or promote products derived from
+ *     this software without specific prior written permission.
+ *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ * POSSIBILITY OF SUCH DAMAGE.
+ *
+ * License 1.0
  */
+
 package fr.paris.lutece.plugins.example.service;
 
 import fr.paris.lutece.plugins.example.business.Project;
@@ -14,50 +43,82 @@ import fr.paris.lutece.portal.service.security.LuteceUser;
  *
  * @author leridons
  */
-public class ProjectCacheService extends AbstractCacheableService {
+public class ProjectCacheService extends AbstractCacheableService 
+{
 
     private static final String SERVICE_NAME = "Project Cache Service";
-    private static ProjectCacheService _intance = new ProjectCacheService();
+    private static ProjectCacheService _intance = new ProjectCacheService( );
 
-    public ProjectCacheService() {
-        initCache();
+    /**
+     *
+     */
+    public ProjectCacheService( ) 
+    {
+        initCache( );
     }
 
-    public static ProjectCacheService getInstance() {
-
+    /**
+     * get the instance
+     * 
+     * @return the instance
+     */
+    public static ProjectCacheService getInstance( ) 
+    {
         return _intance;
     }
 
-    public String getName() {
+    @Override
+    public String getName( ) 
+    {
         return SERVICE_NAME;
     }
 
-    public Project getResource(String strId, LuteceUser user) {
+    /**
+     * get the project from cache, or from DAO if not exists
+     * 
+     * @param strId
+     * @param user
+     * @return the project
+     */
+    public Project getResource( String strId, LuteceUser user ) 
+    {
 
-        String cacheKey = getCacheKey(strId, user);
+        String cacheKey = getCacheKey( strId, user );
 
-        Project r = (Project) getFromCache(cacheKey);
-        if (r == null) {
-            r = ProjectHome.findByPrimaryKey(Integer.parseInt(strId));
+        Project proj = ( Project ) getFromCache( cacheKey );
+        if ( proj == null ) 
+        {
+            proj = ProjectHome.findByPrimaryKey( Integer.parseInt( strId ) );
 
-            cacheKey = getCacheKey(String.valueOf(r.getId()), user);
-            putInCache(cacheKey, r);
+            cacheKey = getCacheKey( String.valueOf( proj.getId( ) ), user );
+            putInCache( cacheKey, proj );
         }
-        return r;
+        return proj;
     }
 
-    private static String getCacheKey(String strId, LuteceUser user) {
-        StringBuilder sbKey = new StringBuilder();
-        sbKey.append("[project:").append(strId).append("][user:");
+    /**
+     * get the project cache key
+     * 
+     * @param strId
+     * @param user
+     * @return the key
+     */
+    private static String getCacheKey( String strId, LuteceUser user ) 
+    {
+        StringBuilder sbKey = new StringBuilder( );
+        sbKey.append( "[project:" ).append( strId ).append( "][user:" );
 
-        if (user != null) {
-            sbKey.append(user.getName());
-        } else {
-            sbKey.append("public");
+        if ( user != null ) 
+        {
+            sbKey.append( user.getName( ) );
+        } 
+        else 
+        {
+            sbKey.append( "public" );
         }
-        sbKey.append("]");
+        sbKey.append( "]" );
 
-        return sbKey.toString();
+        return sbKey.toString( );
     }
 
 }

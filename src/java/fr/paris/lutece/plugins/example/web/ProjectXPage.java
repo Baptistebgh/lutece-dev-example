@@ -45,7 +45,6 @@ import fr.paris.lutece.util.url.UrlItem;
 import fr.paris.lutece.portal.service.message.SiteMessageService;
 import fr.paris.lutece.portal.service.message.SiteMessage;
 import fr.paris.lutece.portal.service.message.SiteMessageException;
-import fr.paris.lutece.portal.web.resource.ExtendableResourcePluginActionManager;
 
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest; 
@@ -57,16 +56,16 @@ import javax.servlet.http.HttpServletRequest;
 public class ProjectXPage extends MVCApplication
 {
     // Templates
-    private static final String TEMPLATE_MANAGE_PROJECTS="/skin/plugins/example/manage_projects.html";
-    private static final String TEMPLATE_CREATE_PROJECT="/skin/plugins/example/create_project.html";
-    private static final String TEMPLATE_MODIFY_PROJECT="/skin/plugins/example/modify_project.html";
-    private static final String TEMPLATE_DETAIL_PROJECT="/skin/plugins/example/detail_project.html";
+    private static final String TEMPLATE_MANAGE_PROJECTS = "/skin/plugins/example/manage_projects.html";
+    private static final String TEMPLATE_CREATE_PROJECT = "/skin/plugins/example/create_project.html";
+    private static final String TEMPLATE_MODIFY_PROJECT = "/skin/plugins/example/modify_project.html";
+    private static final String TEMPLATE_DETAIL_PROJECT = "/skin/plugins/example/detail_project.html";
     
     // JSP
     private static final String JSP_PAGE_PORTAL = "jsp/site/Portal.jsp";
     
     // Parameters
-    private static final String PARAMETER_ID_PROJECT="id";
+    private static final String PARAMETER_ID_PROJECT = "id";
     private static final String PARAM_ACTION = "action";
     private static final String PARAM_PAGE = "page";
     
@@ -85,7 +84,7 @@ public class ProjectXPage extends MVCApplication
 
     // Actions
     private static final String ACTION_CREATE_PROJECT = "createProject";
-    private static final String ACTION_MODIFY_PROJECT= "modifyProject";
+    private static final String ACTION_MODIFY_PROJECT = "modifyProject";
     private static final String ACTION_REMOVE_PROJECT = "removeProject";
     private static final String ACTION_CONFIRM_REMOVE_PROJECT = "confirmRemoveProject";
 
@@ -97,6 +96,12 @@ public class ProjectXPage extends MVCApplication
     // Session variable to store working values
     private Project _project;
     
+    /**
+     * returns the manage project XPage
+     * 
+     * @param request
+     * @return 
+     */
     @View( value = VIEW_MANAGE_PROJECTS, defaultView = true )
     public XPage getManageProjects( HttpServletRequest request )
     {
@@ -164,7 +169,7 @@ public class ProjectXPage extends MVCApplication
         url.addParameter( PARAM_ACTION, ACTION_REMOVE_PROJECT );
         url.addParameter( PARAMETER_ID_PROJECT, nId );
         
-        SiteMessageService.setMessage(request, MESSAGE_CONFIRM_REMOVE_PROJECT, SiteMessage.TYPE_CONFIRMATION, url.getUrl(  ));
+        SiteMessageService.setMessage( request, MESSAGE_CONFIRM_REMOVE_PROJECT, SiteMessage.TYPE_CONFIRMATION, url.getUrl(  ) );
         return null;
     }
 
@@ -195,7 +200,7 @@ public class ProjectXPage extends MVCApplication
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_PROJECT ) );
 
-        if ( _project == null  || ( _project.getId( ) != nId ))
+        if ( _project == null  || ( _project.getId( ) != nId ) )
         {
             _project = ProjectHome.findByPrimaryKey( nId );
         }
@@ -240,9 +245,9 @@ public class ProjectXPage extends MVCApplication
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_PROJECT ) );
 
-        if ( _project == null  || ( _project.getId( ) != nId ))
+        if ( _project == null  || ( _project.getId( ) != nId ) )
         {
-            _project =  ProjectCacheService.getInstance().getResource(String.valueOf(nId), null);
+            _project =  ProjectCacheService.getInstance( ).getResource( String.valueOf( nId ), null );
         }
 
         Map<String, Object> model = getModel(  );

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2016, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -31,24 +31,28 @@
  *
  * License 1.0
  */ 
+
 package fr.paris.lutece.plugins.example.business;
 
 import fr.paris.lutece.portal.service.i18n.Localizable;
 import fr.paris.lutece.portal.service.resource.IExtendableResource;
-import javax.validation.constraints.*;
-import org.hibernate.validator.constraints.*;
 import java.util.Locale;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.URL;
 
 /**
  * This is the business class for the object Project
  */ 
-public class Project implements Localizable, IExtendableResource {
-
+public class Project implements Localizable, IExtendableResource 
+{
+    public static final String PROPERTY_RESOURCE_TYPE = "Project_resource_type";  
     
     private static final long serialVersionUID = 1L;
-    
-    public static String PROPERTY_RESOURCE_TYPE = "Project_resource_type";  
-    
+        
     // Variables declarations 
     private int _nId;
     private Locale _locale;
@@ -61,7 +65,7 @@ public class Project implements Localizable, IExtendableResource {
     @Size( max = 50 , message = "#i18n{example.validation.project.Name.size}" ) 
     private String _strName;
     
-    @URL(message = "#i18n{portal.validation.message.url}")
+    @URL( message = "#i18n{portal.validation.message.url}" )
     @NotEmpty( message = "#i18n{example.validation.project.ImageUrl.notEmpty}" )
     @Size( max = 255 , message = "#i18n{example.validation.project.ImageUrl.size}" ) 
     private String _strImageUrl;
@@ -148,7 +152,8 @@ public class Project implements Localizable, IExtendableResource {
      * Sets the cost
      * @param strCost The cost
      */ 
-    public void setCost(int nCost) {
+    public void setCost( int nCost ) 
+    {
         this._nCost = nCost;
     }
 
@@ -173,24 +178,41 @@ public class Project implements Localizable, IExtendableResource {
     }
     
 
+   
+    /**
+     * Sets the locale
+     * 
+     * @param the locale
+     */
     @Override
-    public void setLocale(Locale arg0) {
+    public void setLocale( Locale arg0 ) 
+    {
         this._locale = arg0;
+    }
+    
+    /**
+     * Returns the locale
+     */
+    public Locale getLocale( ) 
+    {
+        return this._locale;
     }
     
         /**
      * {@inheritDoc}
      */
     @Override
-    public String getIdExtendableResource() {
-        return Integer.toString(_nId);
+    public String getIdExtendableResource( ) 
+    {
+        return Integer.toString( _nId );
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public String getExtendableResourceType() {
+    public String getExtendableResourceType( ) 
+    {
         return PROPERTY_RESOURCE_TYPE;
     }
 
@@ -198,17 +220,20 @@ public class Project implements Localizable, IExtendableResource {
      * {@inheritDoc}
      */
     @Override
-    public String getExtendableResourceName() {
+    public String getExtendableResourceName( ) 
+    {
         return _strName;
     }
 
     @Override
-    public String getExtendableResourceDescription() {
+    public String getExtendableResourceDescription( ) 
+    {
         return _strDescription;
     }
 
     @Override
-    public String getExtendableResourceImageUrl() {
+    public String getExtendableResourceImageUrl( ) 
+    {
         return _strImageUrl;
     }
 

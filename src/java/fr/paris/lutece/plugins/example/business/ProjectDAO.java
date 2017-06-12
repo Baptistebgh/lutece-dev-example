@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2016, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -60,7 +60,7 @@ public final class ProjectDAO implements IProjectDAO
      * @param plugin The Plugin
      * @return The new primary key
      */
-    public int newPrimaryKey( Plugin plugin)
+    public int newPrimaryKey( Plugin plugin )
     {
         DAOUtil daoUtil = new DAOUtil( SQL_QUERY_NEW_PK , plugin  );
         daoUtil.executeQuery( );
@@ -108,7 +108,7 @@ public final class ProjectDAO implements IProjectDAO
 
         if ( daoUtil.next( ) )
         {
-            project = new Project();
+            project = new Project( );
             int nIndex = 1;
             
             project.setId( daoUtil.getInt( nIndex++ ) );

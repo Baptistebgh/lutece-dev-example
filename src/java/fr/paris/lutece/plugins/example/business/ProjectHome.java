@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2002-2016, Mairie de Paris
+ * Copyright (c) 2002-2017, Mairie de Paris
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -96,7 +96,7 @@ public final class ProjectHome
      */
     public static Project findByPrimaryKey( int nKey )
     {
-        return _dao.load( nKey, _plugin);
+        return _dao.load( nKey, _plugin );
     }
 
     /**
@@ -123,7 +123,7 @@ public final class ProjectHome
      */
     public static ReferenceList getProjectsReferenceList( )
     {
-        return _dao.selectProjectsReferenceList(_plugin );
+        return _dao.selectProjectsReferenceList( _plugin );
     }
 }
 

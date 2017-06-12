@@ -43,16 +43,20 @@ import org.apache.commons.lang.StringUtils;
 
 import java.util.Locale;
 
-
-public class ProjectExtendableResourceService implements IExtendableResourceService
+/**
+ *
+ * @author leridons
+ */
+public class ProjectExtendableResourceService implements IExtendableResourceService 
 {
-    private String MESSAGE_KEY_PROJECT_RESOURCE_TYPE_DESCRIPTION = "example.extend.resource.typeDescription";
+
+    private static final String _MESSAGE_KEY_PROJECT_RESOURCE_TYPE_DESCRIPTION = "example.extend.resource.typeDescription";
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean isInvoked( String strResourceType )
+    public boolean isInvoked( String strResourceType ) 
     {
         return Project.PROPERTY_RESOURCE_TYPE.equals( strResourceType );
     }
@@ -61,9 +65,9 @@ public class ProjectExtendableResourceService implements IExtendableResourceServ
      * {@inheritDoc}
      */
     @Override
-    public IExtendableResource getResource( String strIdResource, String strResourceType )
+    public IExtendableResource getResource( String strIdResource, String strResourceType ) 
     {
-        if ( StringUtils.isNotBlank( strIdResource ) && StringUtils.isNumeric( strIdResource ) )
+        if ( StringUtils.isNotBlank( strIdResource ) && StringUtils.isNumeric( strIdResource ) ) 
         {
             int nIdDocument = Integer.parseInt( strIdResource );
 
@@ -77,7 +81,7 @@ public class ProjectExtendableResourceService implements IExtendableResourceServ
      * {@inheritDoc}
      */
     @Override
-    public String getResourceType(  )
+    public String getResourceType( ) 
     {
         return Project.PROPERTY_RESOURCE_TYPE;
     }
@@ -86,24 +90,22 @@ public class ProjectExtendableResourceService implements IExtendableResourceServ
      * {@inheritDoc}
      */
     @Override
-    public String getResourceTypeDescription( Locale locale )
-            
+    public String getResourceTypeDescription( Locale locale ) 
     {
-        String s = I18nService.getLocalizedString( MESSAGE_KEY_PROJECT_RESOURCE_TYPE_DESCRIPTION, locale );
+        String s = I18nService.getLocalizedString( _MESSAGE_KEY_PROJECT_RESOURCE_TYPE_DESCRIPTION, locale );
         return s;
     }
 
-        /**
-        * {@inheritDoc}
-        */
-        @Override
-        public String getResourceUrl( String strIdResource, String strResourceType )
-        {
-            String strUrl="";
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getResourceUrl( String strIdResource, String strResourceType ) 
+    {
+        String strUrl = "";
 
-            // get the URL
-            // ...
-
-            return strUrl;
-        }
+        // get the URL
+        // ...
+        return strUrl;
+    }
 }

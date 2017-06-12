@@ -206,7 +206,7 @@ public class ProjectJspBean extends ManageProjectJspBean
     {
         int nId = Integer.parseInt( request.getParameter( PARAMETER_ID_PROJECT ) );
 
-        if ( _project == null || ( _project.getId(  ) != nId ))
+        if ( _project == null || ( _project.getId(  ) != nId ) )
         {
             _project = ProjectHome.findByPrimaryKey( nId );
         }
@@ -222,7 +222,7 @@ public class ProjectJspBean extends ManageProjectJspBean
         model.put( MARK_PROJECT, _project );
 
         // ajout de la gestion du plugin extend
-        ExtendableResourcePluginActionManager.fillModel( request, getUser( ), model, String.valueOf(nId), Project.PROPERTY_RESOURCE_TYPE );
+        ExtendableResourcePluginActionManager.fillModel( request, getUser( ), model, String.valueOf( nId ), Project.PROPERTY_RESOURCE_TYPE );
         
         return getPage( PROPERTY_PAGE_TITLE_MODIFY_PROJECT, TEMPLATE_MODIFY_PROJECT, model );
     }

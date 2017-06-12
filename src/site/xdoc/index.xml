@@ -11,10 +11,19 @@
             </p>
             -->
             <subsection name="Introduction">
-                <p></p>
+                <p>This is an example Lutèce plugin.</p>
+		<p>This application was generated  with the Lutèce pluginWizard, and upgraded to demonstrate the jointly implementation of others plugin.</p>
+		<p>A step-by-step tutorial is available : consult the "Lutece_example_tutorial.md" file.</p>
+
             </subsection>
             <subsection name="Configuration">
-                <p></p>
+                <p>JDK1.8</p>
+		<p>Maven 3.x</p>
+		<p>Ant</p>
+		<p>MySQL 5.x</p>
+		<p>Tomcat 8.x</p>
+		<p>Git and  svn</p>
+		<p>NetBeans or Eclipse</p>
             </subsection>
             <subsection name="Usage">
                 <p></p>
