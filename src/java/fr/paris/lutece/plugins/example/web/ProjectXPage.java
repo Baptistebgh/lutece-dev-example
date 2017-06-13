@@ -132,7 +132,7 @@ public class ProjectXPage extends MVCApplication
         populate( _project, request );
 
         // Check constraints
-        if ( !validateBean( _project, getLocale( request ) ) )
+        if ( !validateBean( _project ) )
         {
             return redirectView( request, VIEW_CREATE_PROJECT );
         }
@@ -214,7 +214,7 @@ public class ProjectXPage extends MVCApplication
         populate( _project, request );
 
         // Check constraints
-        if ( !validateBean( _project, getLocale( request ) ) )
+        if ( !validateBean( _project ) )
         {
             return redirect( request, VIEW_MODIFY_PROJECT, PARAMETER_ID_PROJECT, _project.getId( ) );
         }
