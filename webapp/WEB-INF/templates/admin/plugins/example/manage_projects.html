@@ -1,34 +1,46 @@
 <#include "manageproject_tabs.html" />
+
+
 <@tabs tab="project" />
 
-<@rowBox>
-    <@boxHeader i18nTitleKey="example.manage_projects.title">
-        <@headerButtons>
 
-        
-        <form class="form-inline pull-right" method="post" name="manage_projects" action="jsp/admin/plugins/example/ManageProjects.jsp">
-            <!-- Add pull-right to class1 -->
-            <@actionButtons button1Name="view_createProject" icon1="icon-plus icon-white" i18nValue1Key="example.manage_projects.buttonAdd" />
-        </form>
-        
-    </@headerButtons>
-    </@boxHeader>
-    <@boxBody>    
     <@messages infos=infos />
-    <@paginationAdmin paginator=paginator combo=1 />
+
     
+<@rowBox>
+            <@boxHeader i18nTitleKey="example.manage_projects.title" boxTools=true>
+                
+                <@headerButtons>
+                
+                <@aButton name="view_createProject" buttonIcon="plus icon-white" 
+                href="jsp/admin/plugins/example/ManageProjects.jsp?view=createProject">
+                #i18n{example.manage_projects.buttonAdd}
+                </@aButton>
+                
+                </@headerButtons>
+                
+       
+         
+            </@boxHeader>
+            <@boxBody>    
+    
+<div class="box-body">            
+  <@paginationAdmin paginator=paginator combo=1 />
+</div>
+
     <@table>
         <tr>
-            <input type="hidden" id="id" name="id"/>
+
             <th>#i18n{example.manage_projects.columnDescription}</th>
             <th>#i18n{example.manage_projects.columnName}</th>
             <th>#i18n{example.manage_projects.columnImageUrl}</th>
             <th>#i18n{portal.util.labelActions}</th>
         </tr>
-        <@tableHeadBodySeparator />
-            <#list project_list as project >
+        <@tableHeadBodySeparator /> 
+        
+        <#list project_list as project >
         <tr>
-            <input type="hidden" id="id" name="id"/>
+
             <td>
                 ${project.description}
             </td>
@@ -38,7 +50,7 @@
             <td>
                 ${project.imageUrl}
             </td>
-        <td>
+            <td>
             <a href="jsp/admin/plugins/example/ManageProjects.jsp?view=modifyProject&id=${project.id}"
                class="btn btn-primary btn-sm" title="#i18n{portal.util.labelModify}">
                 <i class="fa fa-pencil"></i>
@@ -48,13 +60,17 @@
                class="btn btn-danger btn-sm" title="#i18n{portal.util.labelDelete}" >
                 <i class="fa fa-trash"></i>
             </a>
-        </td>
+            
+             
+            </td>
         </tr>
         </#list>
     </@table>
 
     <@paginationAdmin paginator=paginator />
 
-  </@boxBody>
+    </@boxBody>
+            
+        
 </@rowBox>
 
