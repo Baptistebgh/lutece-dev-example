@@ -89,7 +89,7 @@ public final class ProjectDAO implements IProjectDAO
         daoUtil.setString( nIndex++ , project.getDescription( ) );
         daoUtil.setString( nIndex++ , project.getName( ) );
         daoUtil.setString( nIndex++ , project.getImageUrl( ) );
-        daoUtil.setString( nIndex++ , project.getCost( ) );
+        daoUtil.setInt(nIndex++ , project.getCost( ) );
 
         daoUtil.executeUpdate( );
         daoUtil.free( );
@@ -115,7 +115,7 @@ public final class ProjectDAO implements IProjectDAO
             project.setDescription( daoUtil.getString( nIndex++ ) );
             project.setName( daoUtil.getString( nIndex++ ) );
             project.setImageUrl( daoUtil.getString( nIndex++ ) );
-            project.setCost( daoUtil.getString( nIndex++ ) );
+            project.setCost( daoUtil.getInt( nIndex++ ) );
         }
 
         daoUtil.free( );
@@ -147,7 +147,7 @@ public final class ProjectDAO implements IProjectDAO
         daoUtil.setString( nIndex++ , project.getDescription( ) );
         daoUtil.setString( nIndex++ , project.getName( ) );
         daoUtil.setString( nIndex++ , project.getImageUrl( ) );
-        daoUtil.setString( nIndex++ , project.getCost( ) );
+        daoUtil.setInt( nIndex++ , project.getCost( ) );
         daoUtil.setInt( nIndex , project.getId( ) );
 
         daoUtil.executeUpdate( );
@@ -173,7 +173,7 @@ public final class ProjectDAO implements IProjectDAO
             project.setDescription( daoUtil.getString( nIndex++ ) );
             project.setName( daoUtil.getString( nIndex++ ) );
             project.setImageUrl( daoUtil.getString( nIndex++ ) );
-            project.setCost( daoUtil.getString( nIndex++ ) );
+            project.setCost( daoUtil.getInt( nIndex++ ) );
 
             projectList.add( project );
         }

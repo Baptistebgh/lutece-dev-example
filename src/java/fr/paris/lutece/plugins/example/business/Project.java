@@ -54,16 +54,15 @@ public class Project implements Serializable
     @NotEmpty( message = "#i18n{example.validation.project.Name.notEmpty}" )
     @Size( max = 50 , message = "#i18n{example.validation.project.Name.size}" ) 
     private String _strName;
+    
     @URL(message = "#i18n{portal.validation.message.url}")
     @NotEmpty( message = "#i18n{example.validation.project.ImageUrl.notEmpty}" )
     @Size( max = 255 , message = "#i18n{example.validation.project.ImageUrl.size}" ) 
     private String _strImageUrl;
-    @NotEmpty(message = "#i18n{example.validation.project.cost.notEmpty}")
-    @Min(value = 5, message = "#i18n{example.validation.project.cost.range}")
-    @Max(value = 25, message = "#i18n{example.validation.project.cost.range}")
-    @Pattern(regexp = "(5|10|15|20|25)", message = "#i18n{example.validation.project.cost.range}")
-    private String _strCost;
+    
+    private int _nCost;
 
+    public static final String MESSAGE_INVALID_COST = "#i18n{example.validation.project.cost.range}";
 
     /**
      * Returns the Id
@@ -141,15 +140,30 @@ public class Project implements Serializable
      * Sets the cost
      * @param strCost The cost
      */ 
-    public void setCost(String strCost) {
-        this._strCost = strCost;
+    public void setCost(int nCost) {
+        this._nCost = nCost;
     }
 
     /**
      * Returns the cost
      * @return The cost
      */
-    public String getCost() {
-        return _strCost;
+    public int getCost( ) 
+    {
+        return _nCost;
     }
+    
+    
+    /**
+     * Cost control : 
+     * 
+     * @return true if cost is a mutiple of 5, false otherwise
+     */
+    public boolean isCostValid( ) 
+    {
+        
+        return ( _nCost % 5 == 0 && _nCost >= 5 && _nCost <= 25 );
+    }
+    
+    
 }

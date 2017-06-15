@@ -144,6 +144,14 @@ public class ProjectJspBean extends ManageProjectJspBean
         {
             return redirectView( request, VIEW_CREATE_PROJECT );
         }
+        
+        // Specific constraint : cost must be a multiple of 5
+        if ( !_project.isCostValid() ) {
+            addError( _project.MESSAGE_INVALID_COST );
+            
+            return  redirectView( request, VIEW_CREATE_PROJECT );
+        }
+        
 
         ProjectHome.create( _project );
         addInfo( INFO_PROJECT_CREATED, getLocale(  ) );
@@ -202,6 +210,13 @@ public class ProjectJspBean extends ManageProjectJspBean
             _project = ProjectHome.findByPrimaryKey( nId );
         }
 
+        // Specific constraint 
+        if ( !_project.isCostValid() ) {
+            addError( _project.MESSAGE_INVALID_COST );
+            
+            return  redirectView( request, VIEW_CREATE_PROJECT );
+        }
+        
         Map<String, Object> model = getModel(  );
         model.put( MARK_PROJECT, _project );
 

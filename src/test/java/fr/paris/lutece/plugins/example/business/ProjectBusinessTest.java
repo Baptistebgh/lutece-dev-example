@@ -45,8 +45,8 @@ public class ProjectBusinessTest extends LuteceTestCase
     private final static String NAME2 = "Name2";
     private final static String IMAGEURL1 = "ImageUrl1";
     private final static String IMAGEURL2 = "ImageUrl2";
-    private final static String COST1 = "Cost1";
-    private final static String COST2 = "Cost2";
+    private final static int COST1 = 1;
+    private final static int COST2 = 2;
 
     public void testBusiness(  )
     {
