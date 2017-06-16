@@ -620,9 +620,13 @@ Il est nécessaire de reconfigurer une nouvelle base de données qui contiendra 
 Comme précedemment, nous allons tout d'abord créer un fichier permettant de stocker la configuration par défaut d'accès à la base de données, qui sera réutilisé à chaque construction du site.
 
 Copiez le fichier :
-``<lutece-dev>/target/lutece-test-1.0.0/WEB-INF/conf/db.properties``
+``<lutece-dev>/target/lutece[-test-1.0.0]/WEB-INF/conf/db.properties``
 
-Créez le répertoire ``<lutece-dev>/src/conf/default/WEB-INF/conf/`` et collez le fichier db.properties dedans.
+Créez ensuite l'un des deux répertoires de déploiement de configuration par défaut :
+* ``.../<lutece-dev>/src/conf/default/WEB-INF/conf/`` (mode site-assembly uniquement)
+* ``/home/<user>/lutece/conf/<artifact-id-du-projet>/WEB-INF/conf/``  (mode site-assembly et multiproject)
+
+Collez le fichier db.properties dedans.
 
 Modifiez ensuite ce fichier db.properties  :
 
