@@ -60,6 +60,8 @@ public class Project implements Serializable
     @Size( max = 255 , message = "#i18n{example.validation.project.ImageUrl.size}" ) 
     private String _strImageUrl;
     
+    @Min ( value = 5 , message = "#i18n{example.validation.project.cost.range}" )
+    @Max ( value = 25 , message = "#i18n{example.validation.project.cost.range}" )
     private int _nCost;
 
     public static final String MESSAGE_INVALID_COST = "#i18n{example.validation.project.cost.range}";
@@ -161,8 +163,7 @@ public class Project implements Serializable
      */
     public boolean isCostValid( ) 
     {
-        
-        return ( _nCost % 5 == 0 && _nCost >= 5 && _nCost <= 25 );
+        return ( _nCost % 5 == 0  );
     }
     
     
